@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import GetAgent from "./components/getAgent";
+import {useState} from "react";
+import AgentInput from "./components/AgentInput";
 
 function App() {
+  const [agentId, setAgentId] = useState("");
+  
+  const addAgentId = () => {
+    setAgentId(agentId);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AgentInput value={agentId}
+                  onChange={(e) => setAgentId(e.target.value)}
+                  buttonAction={addAgentId}
+                  label={"Get Agent"}/>
+
+      <GetAgent id={agentId}/>
+
     </div>
   );
 }
