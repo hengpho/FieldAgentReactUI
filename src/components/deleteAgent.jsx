@@ -1,7 +1,7 @@
 import {useState} from "react";
 import React, {useEffect} from "react";
 
-function GetAgent({id}) {
+function DeleteAgent({id}) {
     const url = `http://localhost:5041/api/agent/${id}`;
 
     const [agent, setAgent] = useState({});
@@ -10,8 +10,12 @@ function GetAgent({id}) {
         loadAgent();
     }, [id]);
 
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTcyMzM3MTQsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6MjAwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MjAwMCJ9.9ntZ32osYxb3ngzpzlxp4Xt2wEBarIp0jvZT_-9VvIo");
+
     var requestOptions = {
-        method: 'GET',
+        method: 'DELETE',
+        headers: myHeaders,
         redirect: 'follow'
     }
 
@@ -32,6 +36,7 @@ function GetAgent({id}) {
         return (
             <div>
                 <div><br></br>URL: {url}</div>
+                <div><b>Agent Deleted</b></div>
                 <div>Agent Id: {agent.agentId}</div>
                 <div>Agent Name: {agent.firstName} {agent.lastName}</div>
                 <div>Agent Birthday: {agent.dateOfBirth}</div>
@@ -40,4 +45,4 @@ function GetAgent({id}) {
         )
     }
 
-export default GetAgent;
+export default DeleteAgent;
